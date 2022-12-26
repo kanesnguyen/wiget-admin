@@ -5,7 +5,8 @@ import {
     Icon,
     Text,
     AlphaStack,
-    Tabs
+    Tabs,
+    TextField
 } from '@shopify/polaris';
 import {
     TextMajor,
@@ -13,7 +14,7 @@ import {
 } from '@shopify/polaris-icons';
 import { useState, useCallback } from 'react';
 
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 function TextWiget(props) {
     const [open, setOpen] = useState(true);
     const [selected, setSelected] = useState(0);
@@ -22,12 +23,12 @@ function TextWiget(props) {
             id: 'all-delivery-date-fitted-2',
             content: 'Delivery Date',
             accessibilityLabel: 'All customers',
-            panelID: 'all-delivery-date-fitted-2',
+            type: 'delivery',
         },
         {
             id: 'accepts-store-pickup-fitted-2',
             content: 'Store Pickup',
-            panelID: 'accepts-store-pickup-fitted-2',
+            type: 'storepickup',
         },
     ];
 
@@ -36,6 +37,9 @@ function TextWiget(props) {
         [],
     );
     const handleToggle = useCallback(() => setOpen((open) => !open), []);
+
+    const dispatch = useDispatch();
+
     return (
         <Box as="div" className="pb-6">
             <Card sectioned>
@@ -67,9 +71,27 @@ function TextWiget(props) {
                 >
                     <Box as="div" className="pt-5 px-3">
                         <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange} fitted>
-                            <Card.Section title={tabs[selected].content}>
-                                <p>Tab {selected} selected</p>
-                            </Card.Section>
+                            <Box as="div" className="pt-5 px-3">
+                                {
+                                    [...Array(Object.keys(props).length).keys()].filter(e => props[Object.keys(props)[e]].type === tabs[selected].type ).map(e => {
+                                        const field = props[Object.keys(props)[e]]
+                                        if (field.name !== 'dispatch') {
+                                            return <Box as="div" className="mb-3" key={field.name}>
+                                                <TextField
+                                                    label={<Text variant="bodyMd" as="span" fontWeight="semibold">{field.name}</Text>}
+                                                    value={field.value}
+                                                    onChange={(value) => dispatch({ type: field.action, payload: value })}
+                                                    autoComplete="off"
+                                                />
+                                            </Box>
+                                        }
+                                        else {
+                                            return false;
+                                        }
+                                    })
+                                }
+
+                            </Box>
                         </Tabs>
                     </Box>
                 </Collapsible>
@@ -79,7 +101,7 @@ function TextWiget(props) {
 }
 
 const mapStateToProps = (state) => {
-    return state.position;
+    return state.text;
 };
 
 export default connect(mapStateToProps)(TextWiget);

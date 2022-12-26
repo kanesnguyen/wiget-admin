@@ -1,4 +1,5 @@
 import moment from 'moment';
+import data from '../data/language.json';
 const optionsDefault = {
     layout: {
         value: 'default',
@@ -9,13 +10,13 @@ const optionsDefault = {
     calendar: {
         value: 'calendar',
         options: [{ value: 'calendar', label: "Calendar" }, { value: 'datelist', label: "Date List" }],
-        name: "Calendar",
+        name: "Calendar layout",
         action: "CHOOSE_CALENDAR",
     },
     language: {
-        value: 'english',
-        options: [{ value: 'english', label: 'English' }, { value: 'vietnam', label: 'Vietnam' }],
-        name: "Language",
+        value: 'en',
+        options: data.map(e => ({value:e.code, label: e.name})),
+        name: "Calendar language",
         action: "CHOOSE_LANGUAGE",
     },
     firstday: {
@@ -57,32 +58,34 @@ const optionsDefault = {
         name: "Require message text color",
         action: "CHOOSE_MESSAGECOLOR",
     },
+    updated: 0,
 };
 function AppearanceReducer(state = optionsDefault, action) {
+    state = { ...state, updated: optionsDefault === state };
     switch (action.type) {
         case 'CHOOSE_LAYOUT':
-            return { ...state, layout: { ...state.layout, value: action.payload } };
+            return { ...state, layout: { ...state.layout, value: action.payload }};
 
         case 'CHOOSE_CALENDAR':
-            return { ...state, calendar: { ...state.calendar, value: action.payload } };
+            return { ...state, calendar: { ...state.calendar, value: action.payload }};
 
         case 'CHOOSE_LANGUAGE':
-            return { ...state, language: { ...state.language, value: action.payload } };
+            return { ...state, language: { ...state.language, value: action.payload }};
 
         case 'CHOOSE_FIRSTDAY':
-            return { ...state, firstday: { ...state.firstday, value: action.payload } };
+            return { ...state, firstday: { ...state.firstday, value: action.payload }};
 
         case 'CHOOSE_DATEFORMAT':
-            return { ...state, dateFromat: { ...state.dateFromat, value: action.payload } };
+            return { ...state, dateFromat: { ...state.dateFromat, value: action.payload }};
 
         case 'CHOOSE_THEMECOLOR':
-            return { ...state, themeColor: { ...state.themeColor, value: action.payload } };
+            return { ...state, themeColor: { ...state.themeColor, value: action.payload }};
 
         case 'CHOOSE_TITLECOLOR':
-            return { ...state, titleColor: { ...state.titleColor, value: action.payload } };
+            return { ...state, titleColor: { ...state.titleColor, value: action.payload }};
 
         case 'CHOOSE_MESSAGECOLOR':
-            return { ...state, messageColor: { ...state.messageColor, value: action.payload } };
+            return { ...state, messageColor: { ...state.messageColor, value: action.payload }};
 
         default:
             return state;

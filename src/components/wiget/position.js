@@ -56,14 +56,14 @@ function PositionWiget(props) {
                             <Checkbox
                                 label="Show the calendar at the product page"
                                 checked={props.showCalendar}
-                                onChange={() => dispatch(toggleShow())}
+                                onChange={(value) => dispatch(toggleShow(value))}
                             />
                         </Box>
                         <Box as="div">
                             <Checkbox
                                 label="Require the delivery date befor checkout"
                                 checked={props.requireCalendar}
-                                onChange={() => dispatch(toggleRequire())}
+                                onChange={(value) => dispatch(toggleRequire(value))}
                             />
                         </Box>
                     </Box>
