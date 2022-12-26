@@ -1,0 +1,2 @@
+export const TOGGLE_REQUIRE = 'TOGGLE_REQUIRE';
+export const TOGGLE_SHOW = 'TOGGLE_SHOW';
