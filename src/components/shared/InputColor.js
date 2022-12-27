@@ -26,6 +26,12 @@ function InputColor({title, defaultColor, actionType}) {
     //eslint-disable-next-line
     , [actionType]);
     const dispatch = useDispatch();
+    const concernedElement = document.querySelector(".box-color");
+    document.addEventListener("mousedown", (event) => {
+      if (!concernedElement.contains(event.target)) {
+        setOpenColor(false);
+      }
+    });
     useEffect(() => {
         setValue(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100))
         // update(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100));
@@ -49,7 +55,7 @@ function InputColor({title, defaultColor, actionType}) {
                 autoComplete="off"
                 onBlur={() => { setColor(hexToHsl(value)); setOpenColor(false)}}
             />
-            <Box onClick={() => setOpenColor(!openColor)} as="div" className={`rounded-sm h-[36px] w-[36px] absolute right-0 bottom-0 z-[99] cursor-pointer`} style={{ backgroundColor: hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100) }}></Box>
+            <Box onClick={() => setOpenColor(!openColor)} as="div" className={`box-color rounded-sm h-[36px] w-[36px] absolute right-0 bottom-0 z-[99] cursor-pointer`} style={{ backgroundColor: hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100) }}></Box>
             {
                 openColor && <Box as="div" className="absolute right-0  z-[999]">
                     <ColorPicker onChange={setColor} color={color} />

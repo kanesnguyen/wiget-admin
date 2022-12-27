@@ -6,7 +6,7 @@ import AppearanceWiget from './components/wiget/appearance'
 import TextWiget from './components/wiget/text'
 import { useSelector } from 'react-redux';
 
-function App() {
+function App({theme}) {
   const allState = useSelector(state => state);
   return (
     <div className="App container p-6 pt-20">
@@ -15,6 +15,7 @@ function App() {
           contextualSaveBarSource:
             './logo.png',
         }}
+        theme={theme}
       >
         <ContextualSaveBar
           message=""

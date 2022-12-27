@@ -15,7 +15,6 @@ import { useState, useCallback } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import InputColor from '../shared/InputColor'
 function ApperanceWiget(props) {
-    console.log(props)
     const [open, setOpen] = useState(true);
 
     const handleToggle = useCallback(() => setOpen((open) => !open), []);
@@ -54,7 +53,7 @@ function ApperanceWiget(props) {
                             //eslint-disable-next-line
                             [...Array(Object.keys(props).length).keys()].map(e => {
                                 const field = props[Object.keys(props)[e]]
-                                if (field.name && field.name !== 'f') {
+                                if (field.name && field.name !== 'f' && field.name !== 'dispatch') {
                                     if (field.options) {
                                         return <Box as="div" key={field.name}>
                                             <Select

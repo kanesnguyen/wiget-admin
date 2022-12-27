@@ -34,7 +34,7 @@ function PositionWiget(props) {
                                     color="success" backdrop
                                 />
                             </Box>
-                            <Text variant="headingMd" as="h2" color="success" fontWeight="semibold">Wiget position</Text>
+                            <Text variant="headingMd" as="h2" color="successs" fontWeight="semibold">Wiget position</Text>
                         </Box>
                         <Box as="div" className={`p-2 transition duration-300 ease-in-out ${open ? 'rotate-0' : '-rotate-90'}`}>
                             <Icon

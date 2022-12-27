@@ -106,9 +106,12 @@ function TextReducer(state = optionsDefault, action) {
             return {...handleState, updated: handleUpdate(handleState)};
 
         case 'UPDATE_STORE_PICKUP_LABEL':
-            handleState = { ...state, messageTextPickup: { ...state.messageTextPickup, value: action.payload }};
+            handleState = { ...state, storePickupLabel: { ...state.storePickupLabel, value: action.payload }};
             return {...handleState, updated: handleUpdate(handleState)};
 
+        case 'UPDATE_MESSAGE_TEXT_PICKUP':
+            handleState = { ...state, messageTextPickup: { ...state.messageTextPickup, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
         case 'UPDATE_STORE_PICKUP_DATE':
             handleState = { ...state, storePickupDateTitle: { ...state.storePickupDateTitle, value: action.payload }};
             return {...handleState, updated: handleUpdate(handleState)};

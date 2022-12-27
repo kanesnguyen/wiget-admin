@@ -10,11 +10,16 @@ import { Provider } from "react-redux";
 import store from './store';
 const container = document.getElementById("root");
 const root = createRoot(container);
+const theme = {
+  colors: {
+    success: 'red'
+  },
+};
 
 root.render(
   <Provider store={store}>
-    <AppProvider i18n={en}>
-      <App />
+    <AppProvider i18n={en}  theme={theme}>
+      <App  theme={theme} />
     </AppProvider>
   </Provider>
 );
