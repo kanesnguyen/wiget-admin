@@ -51,9 +51,10 @@ function ApperanceWiget(props) {
                 >
                     <Box as="div" className="pt-5 px-3 grid grid-cols-2 gap-5">
                         {
+                            //eslint-disable-next-line
                             [...Array(Object.keys(props).length).keys()].map(e => {
                                 const field = props[Object.keys(props)[e]]
-                                if (field.name && field.name !== 'dispatch' && field) {
+                                if (field.name && field.name !== 'dispatch') {
                                     if (field.options) {
                                         return <Box as="div" key={field.name}>
                                             <Select
@@ -72,9 +73,6 @@ function ApperanceWiget(props) {
                                             actionType={field.action}
                                         />
                                     }
-                                }
-                                else {
-                                    return false;
                                 }
                             })
                         }
