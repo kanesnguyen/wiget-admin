@@ -54,7 +54,7 @@ function ApperanceWiget(props) {
                             //eslint-disable-next-line
                             [...Array(Object.keys(props).length).keys()].map(e => {
                                 const field = props[Object.keys(props)[e]]
-                                if (field.name && field.name !== 'dispatch') {
+                                if (field.name && field.name !== 'f') {
                                     if (field.options) {
                                         return <Box as="div" key={field.name}>
                                             <Select
@@ -66,14 +66,12 @@ function ApperanceWiget(props) {
                                         </Box>
                                     }
                                     else {
-                                        if(field.name) {
                                             return <InputColor
                                             title={field.name}
                                             defaultColor={field.value}
                                             key={field.name}
                                             actionType={field.action}
                                         />
-                                        }
                                     }
                                 }
                             })
