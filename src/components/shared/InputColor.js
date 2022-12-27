@@ -20,7 +20,8 @@ function InputColor({title, defaultColor, update}) {
     useEffect(() => {
         setValue(hslToHex(color.hue, color.brightness * 100, color.saturation * 100))
         update(hslToHex(color.hue, color.brightness * 100, color.saturation * 100));
-    },[color, update])
+        //eslint-disable-next-line
+    },[color])
     
     return (
         <Box as="div" className="relative">
