@@ -8,7 +8,7 @@ import {
     ColorPicker
 } from '@shopify/polaris';
 import { connect, useDispatch } from 'react-redux';
-function InputColor({title, defaultColor, action}) {
+function InputColor({title, defaultColor, actionType}) {
     const [openColor, setOpenColor] = useState(false);
     const [color, setColor] = useState(defaultColor);
     const [value, setValue] = useState(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100));
@@ -16,7 +16,7 @@ function InputColor({title, defaultColor, action}) {
     {
         setValue(cleanInputColor(newValue));
         dispatch({ 
-            type: action, 
+            type: actionType, 
             payload: { 
                 hue: hexToHsl(newValue).hue, 
                 brightness: hexToHsl(newValue).brightness, 
@@ -24,14 +24,14 @@ function InputColor({title, defaultColor, action}) {
         }})
     }
     //eslint-disable-next-line
-    , [action]);
+    , [actionType]);
     const dispatch = useDispatch();
     useEffect(() => {
         setValue(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100))
         // update(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100));
         const value = hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100)
         dispatch({ 
-            type: 'CHOOSE_THEMECOLOR', 
+            type: actionType, 
             payload: { 
                 hue: hexToHsl(value).hue, 
                 brightness: hexToHsl(value).brightness, 

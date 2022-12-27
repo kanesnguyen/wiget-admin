@@ -68,7 +68,7 @@ function ApperanceWiget(props) {
                                             title={field.name}
                                             defaultColor={field.value}
                                             key={field.name}
-                                            action={field.action}
+                                            actionType={field.action}
                                         />
                                     }
                                 }
