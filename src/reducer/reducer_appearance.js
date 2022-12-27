@@ -21,7 +21,7 @@ const optionsDefault = {
     },
     firstday: {
         value: '1',
-        options: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((e, i) => ({ value: i, label: e })),
+        options: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((e, i) => ({ value: i.toString(), label: e })),
         name: "First day of Calendar",
         action: "CHOOSE_FIRSTDAY",
     },
@@ -58,34 +58,52 @@ const optionsDefault = {
         name: "Require message text color",
         action: "CHOOSE_MESSAGECOLOR",
     },
-    updated: 0,
+    updated: false,
 };
+let handleState = {}
+const handleUpdate = (handleState) => {
+    return  optionsDefault.layout !== handleState.layout  || 
+            optionsDefault.calendar !== handleState.calendar ||
+            optionsDefault.language !== handleState.language ||
+            optionsDefault.firstday !== handleState.firstday ||
+            optionsDefault.dateFromat !== handleState.dateFromat ||
+            optionsDefault.themeColor !== handleState.themeColor ||
+            optionsDefault.titleColor !== handleState.titleColor ||
+            optionsDefault.messageColor !== handleState.messageColor
+}
 function AppearanceReducer(state = optionsDefault, action) {
-    state = { ...state, updated: optionsDefault === state };
     switch (action.type) {
         case 'CHOOSE_LAYOUT':
-            return { ...state, layout: { ...state.layout, value: action.payload }};
+            handleState = { ...state, layout: { ...state.layout, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'CHOOSE_CALENDAR':
-            return { ...state, calendar: { ...state.calendar, value: action.payload }};
+            handleState = { ...state, calendar: { ...state.calendar, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'CHOOSE_LANGUAGE':
-            return { ...state, language: { ...state.language, value: action.payload }};
+            handleState = { ...state, language: { ...state.language, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'CHOOSE_FIRSTDAY':
-            return { ...state, firstday: { ...state.firstday, value: action.payload }};
+            handleState = { ...state, firstday: { ...state.firstday, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'CHOOSE_DATEFORMAT':
-            return { ...state, dateFromat: { ...state.dateFromat, value: action.payload }};
+            handleState = { ...state, dateFromat: { ...state.dateFromat, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'CHOOSE_THEMECOLOR':
-            return { ...state, themeColor: { ...state.themeColor, value: action.payload }};
+            handleState = { ...state, themeColor: { ...state.themeColor, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'CHOOSE_TITLECOLOR':
-            return { ...state, titleColor: { ...state.titleColor, value: action.payload }};
+            handleState = { ...state, titleColor: { ...state.titleColor, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'CHOOSE_MESSAGECOLOR':
-            return { ...state, messageColor: { ...state.messageColor, value: action.payload }};
+            handleState = { ...state, messageColor: { ...state.messageColor, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         default:
             return state;

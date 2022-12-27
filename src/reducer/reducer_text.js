@@ -59,38 +59,57 @@ const optionsDefault = {
         action: "UPDATE_STORE_PICKUP_MESSAGE",
         type: 'storepickup'
     },
-    updated: 0,
+    updated: false,
 };
+let handleState = {}
+const handleUpdate = (handleState) => {
+    return  optionsDefault.title !== handleState.title  || 
+            optionsDefault.dateLabel !== handleState.dateLabel ||
+            optionsDefault.dateTitle !== handleState.dateTitle ||
+            optionsDefault.timeTitle !== handleState.timeTitle ||
+            optionsDefault.messageText !== handleState.messageText ||
+            optionsDefault.messageTextPickup !== handleState.messageTextPickup ||
+            optionsDefault.storePickupDateTitle !== handleState.storePickupDateTitle ||
+            optionsDefault.storePickupTimeTitle !== handleState.messageTextPickup ||
+            optionsDefault.requiredMessageText !== handleState.requiredMessageText
+}
 function TextReducer(state = optionsDefault, action) {
-    
-    state = { ...state, updated: JSON.stringify(optionsDefault) === JSON.stringify(state) };
     switch (action.type) {
         case 'UPDATE_TITLE':
-            return { ...state, title: { ...state.title, value: action.payload }};
+            handleState = { ...state, title: { ...state.title, value: action.payload }}
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'UPDATE_DATE_LABEL':
-            return { ...state, dateLabel: { ...state.dateLabel, value: action.payload }};
+            handleState = { ...state, dateLabel: { ...state.dateLabel, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'UPDATE_DATE_TITLE':
-            return { ...state, dateTitle: { ...state.dateTitle, value: action.payload }};
+            handleState = { ...state, dateTitle: { ...state.dateTitle, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'UPDATE_TIME_TITLE':
-            return { ...state, timeTitle: { ...state.timeTitle, value: action.payload }};
+            handleState = { ...state, timeTitle: { ...state.timeTitle, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'UPDATE_MESSAGE_TEXT':
-            return { ...state, messageText: { ...state.messageText, value: action.payload }};
+            handleState = { ...state, messageText: { ...state.messageText, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'UPDATE_STORE_PICKUP_LABEL':
-            return { ...state, messageTextPickup: { ...state.messageTextPickup, value: action.payload }};
+            handleState = { ...state, messageTextPickup: { ...state.messageTextPickup, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'UPDATE_STORE_PICKUP_DATE':
-            return { ...state, storePickupDateTitle: { ...state.storePickupDateTitle, value: action.payload }};
+            handleState = { ...state, storePickupDateTitle: { ...state.storePickupDateTitle, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'UPDATE_STORE_PICKUP_TIME':
-            return { ...state, storePickupTimeTitle: { ...state.storePickupTimeTitle, value: action.payload }};
+            handleState = { ...state, storePickupTimeTitle: { ...state.storePickupTimeTitle, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         case 'UPDATE_STORE_PICKUP_MESSAGE':
-            return { ...state, requiredMessageText: { ...state.requiredMessageText, value: action.payload }};
+            handleState = { ...state, requiredMessageText: { ...state.requiredMessageText, value: action.payload }};
+            return {...handleState, updated: handleUpdate(handleState)};
 
         default:
             return state;

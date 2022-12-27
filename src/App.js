@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import {Frame, ContextualSaveBar, Box} from '@shopify/polaris';
 import PositionWiget from './components/wiget/position'
@@ -8,24 +8,6 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const allState = useSelector(state => state);
-  const [disabled, setDisable] = useState(true);
-  const cobra = allState;
-  useEffect(() => {
-    console.log(JSON.stringify(cobra) === JSON.stringify(allState))
-    // [...Array(Object.keys(allState).length).keys()].map((e) => {
-    //   const wigetValue  = allState[Object.keys(allState)[e]].updated
-    //   if (wigetValue === 1) {
-    //     console.log("CHANGED")
-    //     setDisable(false)
-    //     return false;
-    //   }
-    //   else {
-    //     console.log("NOT CHANGED")
-    //     setDisable(true)
-    //     return false;
-    //   }
-    // })
-  },[allState])
   return (
     <div className="App container p-6 pt-20">
       <Frame
@@ -37,12 +19,12 @@ function App() {
         <ContextualSaveBar
           message=""
           saveAction={{
-            onAction: () => console.log('add form submit logic'),
+            onAction: () => console.log(allState),
             loading: false,
-            disabled,
+            disabled: ![...Array(Object.keys(allState).length).keys()].map((e) => allState[Object.keys(allState)[e]].updated).includes(true),
           }}
           discardAction={{
-            onAction: () => console.log('add clear form logic'),
+            onAction: () => console.log('Not saved changed'),
           }}
         />
         <Box as="div" className="container">
