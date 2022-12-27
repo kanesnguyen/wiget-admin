@@ -66,12 +66,14 @@ function ApperanceWiget(props) {
                                         </Box>
                                     }
                                     else {
-                                        return <InputColor
+                                        if(field.name) {
+                                            return <InputColor
                                             title={field.name}
                                             defaultColor={field.value}
                                             key={field.name}
                                             actionType={field.action}
                                         />
+                                        }
                                     }
                                 }
                             })
