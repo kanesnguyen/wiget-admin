@@ -1,4 +1,4 @@
-import { CHOOSE_CALENDAR, CHOOSE_DATEFORMAT, CHOOSE_FIRSTDAY, CHOOSE_LANGUAGE, CHOOSE_LAYOUT } from "../constants/actionTypes/appearance";
+import { CHOOSE_CALENDAR, CHOOSE_DATEFORMAT, CHOOSE_FIRSTDAY, CHOOSE_LANGUAGE, CHOOSE_LAYOUT, CHOOSE_THEMECOLOR, CHOOSE_TITLECOLOR, CHOOSE_MESSAGECOLOR} from "../constants/actionTypes/appearance";
 export function chooseLayout(value) {
     
     return {
@@ -33,4 +33,22 @@ export function chooseDateFormat(value) {
       type: CHOOSE_DATEFORMAT,
       payload: value
     };
+}
+export function chooseThemeColor(value) {
+    return {
+      type: CHOOSE_THEMECOLOR,
+      payload: value
+    };
+}
+export function chooseTitleColor(value) {
+  return {
+    type: CHOOSE_TITLECOLOR,
+    payload: value
+  };
+}
+export function chooseMessageColor(value) {
+  return {
+    type: CHOOSE_MESSAGECOLOR,
+    payload: value
+  };
 }
