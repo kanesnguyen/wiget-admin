@@ -26,7 +26,7 @@ function ApperanceWiget(props) {
                 <AlphaStack fullWidth>
                     <Box as="div" className="flex items-center justify-between cursor-pointer" onClick={handleToggle}>
                         <Box as="div" className="flex items-center justify-start">
-                            <Box as="div" className="p-2">
+                            <Box as="div" className="p-2" >
                                 <Icon
                                     source={PaintBrushMajor}
                                     color="success" backdrop

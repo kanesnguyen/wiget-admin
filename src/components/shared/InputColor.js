@@ -10,7 +10,7 @@ import {
 function InputColor({title, defaultColor, update}) {
     const [openColor, setOpenColor] = useState(false);
     const [color, setColor] = useState(defaultColor);
-    const [value, setValue] = useState(hslToHex(color.hue, color.brightness * 100, color.saturation * 100));
+    const [value, setValue] = useState(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100));
     const handleChange = useCallback((newValue) => 
     {
         setValue(cleanInputColor(newValue));
