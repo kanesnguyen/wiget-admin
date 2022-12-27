@@ -62,14 +62,14 @@ const optionsDefault = {
 };
 let handleState = {}
 const handleUpdate = (handleState) => {
-    return  optionsDefault.layout !== handleState.layout  || 
-            optionsDefault.calendar !== handleState.calendar ||
-            optionsDefault.language !== handleState.language ||
-            optionsDefault.firstday !== handleState.firstday ||
-            optionsDefault.dateFromat !== handleState.dateFromat ||
-            optionsDefault.themeColor !== handleState.themeColor ||
-            optionsDefault.titleColor !== handleState.titleColor ||
-            optionsDefault.messageColor !== handleState.messageColor
+    return  optionsDefault.layout.value !== handleState.layout.value  || 
+            optionsDefault.calendar.value !== handleState.calendar.value ||
+            optionsDefault.language.value !== handleState.language.value ||
+            optionsDefault.firstday.value !== handleState.firstday.value ||
+            optionsDefault.dateFromat.value !== handleState.dateFromat.value ||
+            JSON.stringify(optionsDefault.themeColor.value) !== JSON.stringify(handleState.themeColor.value) ||
+            JSON.stringify(optionsDefault.titleColor.value) !== JSON.stringify(handleState.titleColor.value) ||
+            JSON.stringify(optionsDefault.messageColor.value) !== JSON.stringify(handleState.messageColor.value)
 }
 function AppearanceReducer(state = optionsDefault, action) {
     switch (action.type) {

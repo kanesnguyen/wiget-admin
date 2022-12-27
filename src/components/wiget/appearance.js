@@ -14,6 +14,7 @@ import {
 import { useState, useCallback } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import InputColor from '../shared/InputColor'
+import { hexToHsl } from '../../extensions/convertColor'
 function ApperanceWiget(props) {
     const [open, setOpen] = useState(true);
 
@@ -64,12 +65,18 @@ function ApperanceWiget(props) {
                                         </Box>
                                     }
                                     else {
-                                        return <InputColor 
-                                                title={field.name} 
-                                                defaultColor={field.value} 
-                                                key={field.name} 
-                                                update={(value) => dispatch({ type: field.action, payload: value })}
-                                                />
+                                        return <InputColor
+                                            title={field.name}
+                                            defaultColor={field.value}
+                                            key={field.name}
+                                            update={(value) => dispatch({ 
+                                                type: field.action, 
+                                                payload: { 
+                                                    hue: hexToHsl(value).hue, 
+                                                    brightness: hexToHsl(value).brightness, 
+                                                    saturation: Number(hexToHsl(value).saturation.toFixed(2)), 
+                                                }})}
+                                        />
                                     }
                                 }
                                 else {

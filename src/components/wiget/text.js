@@ -79,9 +79,11 @@ function TextWiget(props) {
                                             return <Box as="div" className="mb-3" key={field.name}>
                                                 <TextField
                                                     label={<Text variant="bodyMd" as="span" fontWeight="semibold">{field.name}</Text>}
+                                                    error={field.value === '' && <Text variant="bodyMd" as="i" color='critical' fontWeight="semibold" className="ml-1 float-right">{field.errorMessage}</Text>}
                                                     value={field.value}
                                                     onChange={(value) => dispatch({ type: field.action, payload: value })}
                                                     autoComplete="off"
+                                                    className="w-full"
                                                 />
                                             </Box>
                                         }
