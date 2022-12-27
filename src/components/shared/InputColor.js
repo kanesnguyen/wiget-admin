@@ -20,7 +20,7 @@ function InputColor({title, defaultColor, update}) {
     useEffect(() => {
         setValue(hslToHex(color.hue, color.brightness * 100, color.saturation * 100))
         update(hslToHex(color.hue, color.brightness * 100, color.saturation * 100));
-    },[color])
+    },[color, update])
     
     return (
         <Box as="div" className="relative">
