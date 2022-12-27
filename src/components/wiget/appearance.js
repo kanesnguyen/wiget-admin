@@ -15,6 +15,7 @@ import { useState, useCallback } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import InputColor from '../shared/InputColor'
 function ApperanceWiget(props) {
+    console.log(props)
     const [open, setOpen] = useState(true);
 
     const handleToggle = useCallback(() => setOpen((open) => !open), []);
