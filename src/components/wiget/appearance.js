@@ -53,7 +53,7 @@ function ApperanceWiget(props) {
                         {
                             [...Array(Object.keys(props).length).keys()].map(e => {
                                 const field = props[Object.keys(props)[e]]
-                                if (field.name && field.name !== 'dispatch') {
+                                if (field.name && field.name !== 'dispatch' && field.name !== 'updated') {
                                     if (field.options) {
                                         return <Box as="div" key={field.name}>
                                             <Select
