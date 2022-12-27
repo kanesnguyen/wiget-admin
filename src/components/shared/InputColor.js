@@ -31,7 +31,7 @@ function InputColor({title, defaultColor, action}) {
         // update(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100));
         const value = hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100)
         dispatch({ 
-            type: action, 
+            type: 'CHOOSE_THEMECOLOR', 
             payload: { 
                 hue: hexToHsl(value).hue, 
                 brightness: hexToHsl(value).brightness, 
