@@ -7,19 +7,36 @@ import {
     TextField,
     ColorPicker
 } from '@shopify/polaris';
-function InputColor({title, defaultColor, update}) {
+import { connect, useDispatch } from 'react-redux';
+function InputColor({title, defaultColor, action}) {
     const [openColor, setOpenColor] = useState(false);
     const [color, setColor] = useState(defaultColor);
     const [value, setValue] = useState(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100));
     const handleChange = useCallback((newValue) => 
     {
         setValue(cleanInputColor(newValue));
-        update(newValue);
+        dispatch({ 
+            type: action, 
+            payload: { 
+                hue: hexToHsl(newValue).hue, 
+                brightness: hexToHsl(newValue).brightness, 
+                saturation: Number(hexToHsl(newValue).saturation.toFixed(2)), 
+        }})
     }
-    , [update]);
+    //eslint-disable-next-line
+    , [action]);
+    const dispatch = useDispatch();
     useEffect(() => {
         setValue(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100))
-        update(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100));
+        // update(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100));
+        const value = hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100)
+        dispatch({ 
+            type: action, 
+            payload: { 
+                hue: hexToHsl(value).hue, 
+                brightness: hexToHsl(value).brightness, 
+                saturation: Number(hexToHsl(value).saturation.toFixed(2)), 
+        }});
         //eslint-disable-next-line
     },[color])
     
@@ -42,4 +59,4 @@ function InputColor({title, defaultColor, update}) {
     )
 }
 
-export default InputColor
+export default connect()(InputColor)
