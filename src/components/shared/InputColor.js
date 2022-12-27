@@ -16,7 +16,7 @@ function InputColor({title, defaultColor, actionType}) {
     {
         setValue(cleanInputColor(newValue));
         dispatch({ 
-            type: actionType, 
+            type: actionType ? actionType : '', 
             payload: { 
                 hue: hexToHsl(newValue).hue, 
                 brightness: hexToHsl(newValue).brightness, 
@@ -31,7 +31,7 @@ function InputColor({title, defaultColor, actionType}) {
         // update(hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100));
         const value = hslToHex(color?.hue, color?.brightness * 100, color?.saturation * 100)
         dispatch({ 
-            type: actionType, 
+            type:  actionType ? actionType : '', 
             payload: { 
                 hue: hexToHsl(value).hue, 
                 brightness: hexToHsl(value).brightness, 
