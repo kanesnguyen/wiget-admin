@@ -11,14 +11,18 @@ import store from './store';
 const container = document.getElementById("root");
 const root = createRoot(container);
 const theme = {
-  colors: {
-    success: 'red'
+  ptBr: {
+    Polaris: {
+      color: {
+        success: 'red',
+      },
+    },
   },
 };
 
 root.render(
   <Provider store={store}>
-    <AppProvider i18n={en}  theme={theme}>
+    <AppProvider i18n={en}  theme={theme} alwaysRenderCustomProperties={true}>
       <App />
     </AppProvider>
   </Provider>

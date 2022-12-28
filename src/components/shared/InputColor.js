@@ -28,7 +28,7 @@ function InputColor({title, defaultColor, actionType}) {
     const dispatch = useDispatch();
     const concernedElement = document.querySelector(".box-color");
     document.addEventListener("mousedown", (event) => {
-      if (!concernedElement.contains(event.target)) {
+      if (!concernedElement?.contains(event.target)) {
         setOpenColor(false);
       }
     });
