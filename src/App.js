@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 function App({theme}) {
   const allState = useSelector(state => state);
   return (
-    <div className="App container p-6 pt-20">
+    <div className="App container p-1 pt-20 sm:p-6 sm:pt-20">
       <Frame
         logo={{
           contextualSaveBarSource:

@@ -19,7 +19,7 @@ const theme = {
 root.render(
   <Provider store={store}>
     <AppProvider i18n={en}  theme={theme}>
-      <App  theme={theme} />
+      <App />
     </AppProvider>
   </Provider>
 );

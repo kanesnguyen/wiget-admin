@@ -48,7 +48,7 @@ function ApperanceWiget(props) {
                     transition={{ duration: '300ms', timingFunction: 'ease-in-out' }}
                     expandOnPrint
                 >
-                    <Box as="div" className="pt-5 px-3 grid grid-cols-2 gap-5">
+                    <Box as="div" className="py-3 sm:py-5 px-3 grid grid-cols-1 sm:grid-cols-2 gap-5">
                         {
                             //eslint-disable-next-line
                             [...Array(Object.keys(props).length).keys()].map(e => {

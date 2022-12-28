@@ -1,7 +1,10 @@
-
 export const validInput = (input) => {
-    if (input.length ===0 && input.charAt(0) === '') {
-        return input
-    }
-    return input
+    //eslint-disable-next-line
+    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    if(format.test(input)){
+        console.log(input);
+        return input.replace(/.$/, '');
+      } else {
+        return input.charAt(0) === ' ' ? input.trim() : input;
+      }
 }

@@ -15,6 +15,8 @@ import {
 import { useState, useCallback } from 'react';
 
 import { connect, useDispatch } from 'react-redux';
+
+import { validInput } from '../../extensions/validInput';
 function TextWiget(props) {
     const [open, setOpen] = useState(true);
     const [selected, setSelected] = useState(0);
@@ -71,7 +73,7 @@ function TextWiget(props) {
                 >
                     <Box as="div" className="pt-5 px-3">
                         <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange} fitted>
-                            <Box as="div" className="pt-5 px-3">
+                            <Box as="div" className="pt-5">
                                 {
                                     [...Array(Object.keys(props).length).keys()].filter(e => props[Object.keys(props)[e]].type === tabs[selected].type ).map(e => {
                                         const field = props[Object.keys(props)[e]]
@@ -80,7 +82,7 @@ function TextWiget(props) {
                                                 <TextField
                                                     label={<Text variant="bodyMd" as="span" fontWeight="semibold">{field.name}</Text>}
                                                     error={field.value.trim() === '' && <Text variant="bodyMd" as="i" color='critical' fontWeight="semibold" className="ml-1 float-right">{field.errorMessage}</Text>}
-                                                    value={field.value.trim()}
+                                                    value={validInput(field.value)}
                                                     onChange={(value) => dispatch({ type: field.action, payload: value })}
                                                     autoComplete="off"
                                                     className="w-full"
